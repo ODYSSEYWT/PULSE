@@ -79,7 +79,7 @@ class GPResidualCorrector(nn.Module):
             return raw_weights
 
 
-class BAYMAS:
+class PULSE:
     def __init__(self, noise=1e-2, device="cuda", jitter=1e-6, mixer_hidden_dim=256, mixer_layers=1, agent_num=2, label_smoothing=0.1, weight_decay=1e-4):
         self.noise = noise
         self.device = device
@@ -568,7 +568,7 @@ if __name__ == "__main__":
     for i in range(agent_num + 1):
         train_input.append([sample[i] for sample in train_responses_grads])
 
-    model_gp = BAYMAS(noise=args.noise, jitter=1e-5, mixer_hidden_dim=args.mixer_hidden_dim, mixer_layers=args.mixer_layers, agent_num=agent_num)
+    model_gp = PULSE(noise=args.noise, jitter=1e-5, mixer_hidden_dim=args.mixer_hidden_dim, mixer_layers=args.mixer_layers, agent_num=agent_num)
     model_gp.fit(train_input, y_train, valid_responses_grads, y_valid, test_responses_grads, y_test, epochs=args.epochs, lr=args.lr)
 
     preds_test = []
@@ -587,7 +587,7 @@ if __name__ == "__main__":
         i += 1
         preds.append({"index": i, "label": y_test, "mean": pred, "variance": pred})
 
-    filename = f"{filename.split('/')[0]}/{filename.split('/')[1]}/{filename.split('/')[2]}/BAYMAS/{str(args.random_split)}/{filename.split('/')[3]}/{filename.split('/')[4]}/{filename.split('/')[5]}.jsonl"
+    filename = f"{filename.split('/')[0]}/{filename.split('/')[1]}/{filename.split('/')[2]}/PULSE/{str(args.random_split)}/{filename.split('/')[3]}/{filename.split('/')[4]}/{filename.split('/')[5]}.jsonl"
     
     parent_dir = os.path.dirname(filename)
     os.makedirs(parent_dir, exist_ok=True)
