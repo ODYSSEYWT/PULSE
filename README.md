@@ -1,5 +1,5 @@
 # PULSE
-This is the repository for Bayesian-based uncertainty estimation for multi-agent systems.
+This is the repository for propagation-aware Uncertainty via Latent System Estimation for multi-agent systems.
 
 ## Requirements
 Please install the environment by using the environment.yml
