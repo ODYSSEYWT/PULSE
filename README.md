@@ -1,4 +1,4 @@
-# BayMAS
+# PULSE
 This is the repository for Bayesian-based uncertainty estimation for multi-agent systems.
 
 ## Requirements
